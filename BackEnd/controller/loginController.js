@@ -18,7 +18,7 @@ const loginController = async (req, res) => {
       return res.json({ message: "Invalid password" });
     }
     const token = jwt.sign(
-      { userId: user.id, role: user.role },
+      { userId: user.id, roleId: user.role_id },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
