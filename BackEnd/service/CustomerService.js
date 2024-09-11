@@ -54,12 +54,12 @@ const updateUser = async (data) => {
                 name:name,
                 email: email,
                 age: age,
-                dob: dob,
-                gender: gender,  
-                fatherName: fatherName,
-                motherName: motherName,
-                mobile: mobile,
-                address: address,
+                DOB: dob,
+                Gender: gender,  
+                FatherName: fatherName,
+                MotherName: motherName,
+                Mobile: mobile,
+                Address: address,
                 location: location
             });
             return {Message:user,status:true};
