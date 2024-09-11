@@ -5,7 +5,9 @@ import routes from "./route/userRoute.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
+
 import db from "./config/dbConfig.js";
+import insertRoles from "./utils/insertRole.js";
 dotenv.config();
 
 const app = express();
@@ -29,6 +31,7 @@ app.get("/", (req, res) => {
 app.use("/", routes);
 db.sync({ force: false })
   .then(() => {
+    insertRoles();
     console.log("Database connected successfully.");
     const PORT = process.env.PORT || 3000;
     app.listen(PORT, () => {
