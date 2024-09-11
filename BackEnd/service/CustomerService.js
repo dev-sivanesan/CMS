@@ -12,26 +12,24 @@ const createUser = async (data) => {
             return {Message:"User already exists." , status:false};;
         }
         else{
-        const hashPassword=await bcrypt.hash(password, 10);
-        const user = await Customer.create({
+            await Customer.create({
             name:name,
             email: email,
             age: age,
-            dob: dob,
-            gender: gender,  
-            fatherName: fatherName,
-            motherName: motherName,
-            mobile: mobile,
-            address: address,
+            DOB: dob,
+            Gender: gender,  
+            FatherName: fatherName,
+            MotherName: motherName,
+            Mobile: mobile,
+            Address: address,
             location: location
         });
-        return {Message:user,status:true};
+        return {Message:"created",status:true};
     } 
 }catch (error) {
         return {Message:error.Message,status:false};
     }
 };
-
 const getUser = async (data) => {
     try {
         const {email}=data
