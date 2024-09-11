@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import helmet from "helmet";
-import routes from "./route/userRoute.js";
+import router from "./route/indexRote.js";
 import cookieParser from "cookie-parser";
 import bodyParser from "body-parser";
 import dotenv from "dotenv";
@@ -17,6 +17,7 @@ const corsOptions = {
   optionSuccessStatus: 200,
   methods: ["GET", "POST", "PUT", "DELETE"],
 };
+
 app.use(cors(corsOptions));
 app.use(helmet());
 app.use(cookieParser());
@@ -24,11 +25,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: "true" }));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-  res.json({ message: "Hello World!" });
-});
-app.use("/", routes);
+
+app.use("/", router);
+
 db.sync({ force: false })
   .then(() => {
     insertRoles();
