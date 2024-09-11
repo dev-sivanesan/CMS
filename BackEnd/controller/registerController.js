@@ -1,13 +1,9 @@
-import express from "express";
 import User from "../model/userModel.js";
 import Roles from "../model/rolesModel.js";
 import bcrypt from "bcryptjs";
-import dotenv from "dotenv";
-dotenv.config();
 
 const registerController = async (req, res) => {
   try {
-    console.log("registered");
     const { userName, email, password, role } = req.body;
 
     const user = await User.findOne({ where: { email } });
@@ -26,7 +22,7 @@ const registerController = async (req, res) => {
       name: userName,
       email: email,
       password: hashPassword,
-      role_id: roleData.role_number,
+      role_id: roleData.role_number, 
     });
 
     res.json({ message: "User created successfully", status: true });

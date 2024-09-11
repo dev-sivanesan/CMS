@@ -1,4 +1,3 @@
-import express from "express";
 import User from "../model/userModel.js";
 import Roles from "../model/rolesModel.js";
 import bcrypt from "bcryptjs";
@@ -12,22 +11,20 @@ const loginController = async (req, res) => {
 
     const user = await User.findOne({
       where: { email },
-      include: [{ model: Roles, attributes: ["role_name"] }], 
+      include: [{ model: Roles, attributes: ["role_name"] }],
     });
 
     if (!user) {
-      console.log("User not found");
       return res.json({ message: "User not found", status: false });
     }
 
-    // Check if the password is valid
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.json({ message: "Invalid password", status: false });
     }
 
     const token = jwt.sign(
-      { userId: user.id, role: user.Role.role_name },
+      { userId: user.id, roleId: user.role_id },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
@@ -35,21 +32,19 @@ const loginController = async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: 1000 * 60 * 60 * 1, 
-      secure: process.env.NODE_ENV === "production",
       path: "/",
     });
 
-  
     return res.json({
       message: "Login successful",
-      role: user.Role.role_name, 
+      role: user.Role.role_name,
       token,
       status: true,
     });
   } catch (error) {
     console.error(error);
     return res.json({ message: "Internal server error", status: false });
-  } 
+  }
 };
 
 export default loginController;
