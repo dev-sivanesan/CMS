@@ -18,5 +18,4 @@ const  Roles = db.define("Role", {
     }
 }
 );
-
 export default Roles;
