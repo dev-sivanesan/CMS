@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const checkToken = (req, res, next) => {
-    console.log('1');
     const token = req.cookies.token;
     if (!token) {
         return res.json({ message: "Unauthorized accsess" , status:false});
@@ -13,11 +12,9 @@ const checkToken = (req, res, next) => {
         if (err) {
             return res.json({ message: "Invalid token" });
         }
-        console.log(decoded);
         req.user = decoded;
         req.user.userId = decoded.userId;
         req.user.role = decoded.role;
-        console.log(req.user);
         next();
     });
 };

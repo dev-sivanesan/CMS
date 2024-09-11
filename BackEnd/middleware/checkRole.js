@@ -1,6 +1,6 @@
 export const checkRole = (roles) => {
     return (req, res, next) => {
-      const { role } = req.user.role;
+      const { role } = req.user;
   
       if (roles.includes(role)) {
         next(); 
