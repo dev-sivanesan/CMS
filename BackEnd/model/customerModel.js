@@ -1,10 +1,14 @@
 import { DataTypes } from "sequelize";
 import db from "../config/dbConfig.js";
-const Customer= db.define('info',{
+const Customer= db.define('customer',{
     email:{
         type:DataTypes.STRING,
         allowNull:false,
         primaryKey:true,
+    },
+    name:{
+    type:DataTypes.STRING,
+    allowNull:false
     },
     age:{
         type:DataTypes.INTEGER,
