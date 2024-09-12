@@ -1,6 +1,4 @@
 import Customer from "../model/customerModel.js";
-import bcrypt from "bcryptjs";
-
 const createUser = async (data) => {
     try {
     const {email,age,name,dob,gender,fatherName,motherName,mobile,address,location}=data
