@@ -1,6 +1,11 @@
 import { DataTypes } from "sequelize";
 import db from "../config/dbConfig.js";
 const Customer= db.define('customer',{
+    id:{
+        type:DataTypes.INTEGER ,
+        autoIncrement:true,
+        primaryKey:true
+    },
     email:{
         type:DataTypes.STRING,
         allowNull:false,

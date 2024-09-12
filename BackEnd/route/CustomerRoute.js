@@ -7,8 +7,8 @@ const CustomerRouter = express.Router();
 
 CustomerRouter.post("/createUser", checkToken,checkRole(['Manager']), createUserController);
 CustomerRouter.get("/getAllUsers", checkToken,checkRole(["Manager","Supervisor","Worker"]), getallUserController);
-CustomerRouter.get("/getUser",checkToken,checkRole(["Manager","Supervisor","Worker"]),getUserController)
-CustomerRouter.put("/updateUser", checkToken, checkRole(["Manager","Supervisor"]),updateUserController);
-CustomerRouter.delete("/deleteUser", checkToken,checkRole(["Manager"]), deleteUserController);
+CustomerRouter.get("/getUser/:id",checkToken,checkRole(["Manager","Supervisor","Worker"]),getUserController)
+CustomerRouter.put("/updateUser/:id", checkToken, checkRole(["Manager","Supervisor"]),updateUserController);
+CustomerRouter.delete("/deleteUser/:id", checkToken,checkRole(["Manager"]), deleteUserController);
 
 export default CustomerRouter;

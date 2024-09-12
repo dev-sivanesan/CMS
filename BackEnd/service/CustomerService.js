@@ -32,8 +32,8 @@ const createUser = async (data) => {
 };
 const getUser = async (data) => {
     try {
-        const {email}=data
-        const user = await Customer.findOne({ where: { email:email } });
+        const {id}=data.params;
+        const user = await Customer.findOne({ where: { id:id } });
         if (user) {
             return {Message:user,status:true};
         }
@@ -46,22 +46,24 @@ const getUser = async (data) => {
 };
 const updateUser = async (data) => {
     try {
-        const {email,age,name,dob,gender,fatherName,motherName,mobile,address,location}=data ;
+        const {id}=data.params;
+        const {email,age,name,dob,gender,fatherName,motherName,mobile,address,location}=data.body ;
 
-        const user = await Customer.findOne({ where: { email: email } });
+        const user = await Customer.findOne({ where: { id: id } });
         if (user) {
             await user.update({
-                name:name,
+                name: name,
                 email: email,
                 age: age,
                 DOB: dob,
-                Gender: gender,  
+                Gender: gender,
                 FatherName: fatherName,
                 MotherName: motherName,
                 Mobile: mobile,
                 Address: address,
                 location: location
             });
+            console.log(user);
             return {Message:user,status:true};
         }
         else{
@@ -73,9 +75,9 @@ const updateUser = async (data) => {
 };
 const deleteUser = async (data) => {
     try {
-        const {email}=data
+        const {id}=data.params;
 
-        const user = await Customer.findOne({ where: { email:email } });
+        const user = await Customer.findOne({ where: { id:id } });
         if (user) {
             await user.destroy();
             return {Message:"User deleted successfully.",status:true};
@@ -98,4 +100,3 @@ const getAllUsers = async () => {
 };
 
 export {createUser,getUser,updateUser,deleteUser,getAllUsers};
-

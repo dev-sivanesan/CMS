@@ -23,7 +23,7 @@ const getallUserController=async(req,res)=>{
 
 const getUserController=async(req,res)=>{
     try{
-        const user=await getUser(req.body);
+        const user=await getUser(req);
         return res.json({Message:user.Message,status:true});
     }
     catch(err){
@@ -32,7 +32,7 @@ const getUserController=async(req,res)=>{
 }
 const updateUserController=async(req,res)=>{
     try{
-        const user=await updateUser(req.body);
+        const user=await updateUser(req);
         return res.json({Message:user.Message,status:true});
     }
     catch(err){
@@ -42,7 +42,7 @@ const updateUserController=async(req,res)=>{
 
 const deleteUserController = async(req,res)=>{
     try{
-        const user=await deleteUser(req.body);
+        const user=await deleteUser(req);
         return res.json({Message:user.Message,status:true});
     }
     catch(err){
