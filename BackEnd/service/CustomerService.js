@@ -14,12 +14,12 @@ const createUser = async (data) => {
             name:name,
             email: email,
             age: age,
-            DOB: dob,
-            Gender: gender,  
-            FatherName: fatherName,
-            MotherName: motherName,
-            Mobile: mobile,
-            Address: address,
+            dob: dob,
+            gender: gender,  
+            fatherName: fatherName,
+            motherName: motherName,
+            mobile: mobile,
+            address: address,
             location: location
         });
         return {Message:"created",status:true};
@@ -50,18 +50,17 @@ const updateUser = async (data) => {
         const user = await Customer.findOne({ where: { id: id } });
         if (user) {
             await user.update({
-                name: name,
+                name:name,
                 email: email,
                 age: age,
-                DOB: dob,
-                Gender: gender,
-                FatherName: fatherName,
-                MotherName: motherName,
-                Mobile: mobile,
-                Address: address,
+                dob: dob,
+                gender: gender,  
+                fatherName: fatherName,
+                motherName: motherName,
+                mobile: mobile,
+                address: address,
                 location: location
             });
-            console.log(user);
             return {Message:user,status:true};
         }
         else{

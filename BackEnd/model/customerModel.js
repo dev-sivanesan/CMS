@@ -19,27 +19,27 @@ const Customer= db.define('customer',{
         type:DataTypes.INTEGER,
         allowNull:false,
     },
-    DOB:{
+    dob:{
         type:DataTypes.DATEONLY,
         allowNull:false,
     },
-    Gender:{
+    gender:{
         type:DataTypes.STRING,
         allowNull:false
     },
-    FatherName:{
+    fatherName:{
         type:DataTypes.STRING,
         allowNull:false,
     },
-    MotherName:{
+    motherName:{
         type:DataTypes.STRING,
         allowNull:false,
     },
-    Mobile:{
+    mobile:{
         type:DataTypes.BIGINT,
         allowNull:false
     },
-    Address:{
+    address:{
         type:DataTypes.STRING,
         allowNull:false
     },
